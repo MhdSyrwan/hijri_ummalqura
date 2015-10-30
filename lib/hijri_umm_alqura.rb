@@ -112,6 +112,18 @@ module HijriUmmAlqura
       end
       return 30
     end
+    
+    def end_of_month
+      HijriUmmAlqura::Hijri.new(year, month, days_in_month)
+    end
+    
+    def last_month
+      HijriUmmAlqura::Hijri.new(year, 12, 1)
+    end
+    
+    def end_of_year
+      HijriUmmAlqura::Hijri.new(year, 12, last_month.days_in_month)
+    end
         
     # comparison operator
     def == (date)
