@@ -166,6 +166,32 @@ module HijriUmmAlqura
     end
   end
   
+  # Returns a gregorian copy of this hijri date
+  def to_gregorian(date = self)
+    year, month, day = date.year, date.month, date.day
+    begin
+      h_date = HijriUmmAlqura::Hijri.new(year, month, day)
+      g_date = h_date.gd.split('-')
+      g_date = HijriUmmAlqura.format_date(g_date)
+    rescue ArgumentError 
+      raise ArgumentError.new("Only numbers are allowed")
+    end
+    return Date.new(*g_date.split('-'))
+  end  
+      
+  # Static method to initialize a hijri date from a gregorian one.
+  # @params [DateTime] date
+  def self.from_gregorian(date)
+    year, month, day = date.year, date.month, date.day
+    begin
+      j_date = HijriUmmAlqura.gd_to_jd(year,month,day)
+      h_date = HijriUmmAlqura.jd(j_date)
+    rescue ArgumentError 
+      raise ArgumentError.new("Only numbers are allowed")
+    end
+    return HijriUmmAlqura::Hijri.new(*h_date.split('-'))
+  end
+  
   #-------------------------------------------------------------------  
   # MODULE METHODS
 
