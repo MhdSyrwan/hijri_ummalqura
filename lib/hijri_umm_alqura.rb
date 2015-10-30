@@ -22,6 +22,9 @@ module HijriUmmAlqura
       @year = year
       @month = month
       @day = day
+      raise ArgumentError.new('Month number is not valid') unless (1..12).include? month
+      raise ArgumentError.new('Day number is not valid') unless (1..days_in_month).include? day
+      raise ArgumentError.new('Year number is not valid') unless year > 0
     end
     
     # return hijri date with month and day names
