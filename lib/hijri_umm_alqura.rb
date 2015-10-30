@@ -130,7 +130,7 @@ module HijriUmmAlqura
       when Numeric then  
         j_date = jd + n * 1 
         result = HijriUmmAlqura.jd(j_date)
-        return result
+        return HijriUmmAlqura::Hijri.new(result.split('-').map(&:to_i))
       end
       raise TypeError, 'expected numeric'
     end
@@ -141,7 +141,7 @@ module HijriUmmAlqura
       when Numeric then  
         j_date = jd - n * 1 
         result = HijriUmmAlqura.jd(j_date)
-        return result
+        return HijriUmmAlqura::Hijri.new(result.split('-').map(&:to_i))
       end
       raise TypeError, 'expected numeric'
     end
