@@ -57,14 +57,14 @@ module HijriUmmAlqura
           j_date = jd
           j_date = j_date + offset * week_days 
           result = HijriUmmAlqura.jd(j_date)
-          return result
+          return HijriUmmAlqura::Hijri.new(*result.split('-').map(&:to_i))
         elsif (period == 'm') 
           rys = resync_year_month(y, m)
           y  = rys[0]
           m = rys[1]
-          return HijriUmmAlqura.format_date([y, m, d])
+          return HijriUmmAlqura::Hijri.new(y, m, d)
         elsif (period == 'y') 
-          return HijriUmmAlqura.format_date([y, m, d])
+          return HijriUmmAlqura::Hijri.new(y, m, d)
         end
       rescue Exception => e  
         puts "Exception details: #{e.class} #{e.message}" 
