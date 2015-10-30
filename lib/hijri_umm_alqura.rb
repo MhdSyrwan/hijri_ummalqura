@@ -175,7 +175,7 @@ module HijriUmmAlqura
       rescue ArgumentError 
         raise ArgumentError.new("Only numbers are allowed")
       end
-      return Date.new(*g_date.split('-'))
+      return Date.new(*g_date.split('-').map(&:to_i))
     end  
         
     # Static method to initialize a hijri date from a gregorian one.
@@ -188,7 +188,7 @@ module HijriUmmAlqura
       rescue ArgumentError 
         raise ArgumentError.new("Only numbers are allowed")
       end
-      return HijriUmmAlqura::Hijri.new(*h_date.split('-'))
+      return HijriUmmAlqura::Hijri.new(*h_date.split('-').map(&:to_i))
     end
   end
   #-------------------------------------------------------------------  
